@@ -13,179 +13,153 @@
 
   <style>
     :root{
-      --accent-1: #f6b93b;
-      --accent-2: #f39c12;
+      --accent-1: #f6b93b; /* amarelo-laranja suave */
+      --accent-2: #f39c12; /* laranja mais quente */
       --muted: #6c757d;
       --card-radius: 14px;
     }
 
-    html, body { height: 100%; margin: 0; padding-bottom: 80px; background: linear-gradient(180deg, #fbfbfc 0%, #f0f2f5 100%); color: #222; font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    html,body{height:100%}
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fbfbfc 0%, #f0f2f5 100%);
+      margin:0;
+      padding-bottom:80px;
+      color:#222;
+    }
 
-    /* Cabeçalho */
-    .site-header {
-      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    /* cabeçalho compacto e chamativo */
+    .site-header{
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
       color: #fff;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 18px;
+      height:56px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:0 18px;
       box-shadow: 0 6px 18px rgba(243,156,18,0.12);
     }
-    .brand-title {
+    .brand-title{
       font-family: "Playfair Display", serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.6px;
-      margin: 0;
+      font-size:1.15rem;
+      letter-spacing:0.6px;
+      margin:0;
     }
-    .brand-sub {
-      font-size: 0.75rem;
-      opacity: 0.95;
-      margin: 0;
-    }
-
-    .container-main {
-      max-width: 1200px;
-      margin: 22px auto;
-      padding: 0 16px;
+    .brand-sub{
+      font-size:0.75rem;
+      opacity:0.95;
+      margin:0;
     }
 
-    /* Controles topo */
-    .controls {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    .search-input {
-      flex: 1 1 320px;
-      max-width: 620px;
-    }
-    .filter-wrap {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
+    .container-main{
+      max-width:1200px;
+      margin:22px auto;
+      padding:0 16px;
     }
 
-    /* Cards */
-    .card-menu {
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-      box-shadow: 0 3px 12px rgba(18, 18, 18, 0.06);
-      background: #fff;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
+    /* controls topo */
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:18px;
     }
-    .card-menu:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 14px 30px rgba(18, 18, 18, 0.12);
+    .search-input{
+      flex:1 1 320px;
+      max-width:620px;
     }
-    .card-img {
-      height: 180px;
-      object-fit: cover;
-      width: 100%;
-      display: block;
-    }
-    .card-body-custom {
-      padding: 14px 16px;
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .price {
-      color: #2d9958;
-      font-weight: 700;
-      font-size: 1.05rem;
-    }
-    .badges {
-      gap: 6px;
-      display: flex;
-      flex-wrap: wrap;
+    .filter-wrap{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
     }
 
-    /* Ribbon Promo/Novo */
+    /* cards */
+    .card-menu{
+      border-radius:var(--card-radius);
+      overflow:hidden;
+      transition: transform .28s ease, box-shadow .28s ease;
+      box-shadow: 0 3px 12px rgba(18,18,18,0.06);
+      background:#fff;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+    .card-menu:hover{
+      transform:translateY(-8px);
+      box-shadow:0 14px 30px rgba(18,18,18,0.12);
+    }
+    .card-img{
+      height:170px;
+      object-fit:cover;
+      width:100%;
+      display:block;
+    }
+    .card-body-custom{
+      padding:12px 14px;
+      flex:1 1 auto;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .price{
+      color:#2d9958;
+      font-weight:700;
+      font-size:1.02rem;
+    }
+    .badges { gap:6px; display:flex; flex-wrap:wrap; }
+
+    /* promo ribbon */
     .ribbon {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: linear-gradient(90deg, #ff6b6b, #ff8e72);
-      color: white;
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.78rem;
-      box-shadow: 0 6px 18px rgba(255, 86, 86, 0.12);
-      z-index: 10;
+      position:absolute; top:10px; left:10px;
+      background:linear-gradient(90deg,#ff6b6b,#ff8e72);
+      color:white; padding:6px 10px; border-radius:8px; font-weight:700;
+      font-size:0.78rem;
+      box-shadow:0 6px 18px rgba(255,86,86,0.12);
     }
 
-    /* Modal imagem */
-    #modalImagem {
-      width: 100%;
-      max-height: 360px;
-      object-fit: cover;
-      border-radius: 8px;
+    /* modal image */
+    #modalImagem { width:100%; max-height:360px; object-fit:cover; border-radius:8px; }
+
+    /* footer fixed */
+    footer{
+      position:fixed;
+      bottom:0; left:0; right:0;
+      background:rgba(44,62,80,0.96);
+      color:#fff;
+      padding:10px 14px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      align-items:center;
+      font-size:0.95rem;
+      z-index:60;
     }
 
-    /* Footer fixo */
-    footer {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(44, 62, 80, 0.96);
-      color: #fff;
-      padding: 10px 14px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      align-items: center;
-      font-size: 0.95rem;
-      z-index: 60;
+    /* whatsapp float */
+    .btn-wa{
+      position:fixed;
+      right:18px;
+      bottom:84px;
+      z-index:80;
+      border-radius:50%;
+      width:58px; height:58px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      background:linear-gradient(180deg,#25D366,#128C7E);
+      color:#fff;
+      font-size:22px;
+      text-decoration:none;
     }
 
-    /* WhatsApp flutuante */
-    .btn-wa {
-      position: fixed;
-      right: 18px;
-      bottom: 84px;
-      z-index: 80;
-      border-radius: 50%;
-      width: 58px;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-      background: linear-gradient(180deg, #25D366, #128C7E);
-      color: #fff;
-      font-size: 22px;
-      text-decoration: none;
-    }
-
-    /* Responsividade para cards: 2 colunas em todos tamanhos */
-    #menu {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    @media(min-width: 768px) {
-      /* 2 colunas também no desktop para não ficar muito esticado */
-      #menu {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media(min-width: 1200px) {
-      /* Para telas maiores, pode ser 3 colunas se quiser */
-      #menu {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    /* small screens */
+    @media (max-width:576px){
+      .card-img{ height:140px; }
+      .controls{ gap:8px; }
+      footer{ font-size:0.85rem; padding:8px; }
     }
   </style>
 </head>
@@ -197,7 +171,7 @@
         🍽
       </div>
       <div>
-        <p class="brand-title">Restaurante Protótipo</p>
+        <p class="brand-title">Restaurante Prototipo</p>
         <p class="brand-sub">Sabores que conquistam — cardápio digital</p>
       </div>
     </div>
@@ -233,8 +207,8 @@
       </div>
     </div>
 
-    <section id="menu">
-      <!-- Cards gerados via JS -->
+    <section id="menu" class="row g-4">
+      <!-- cards injetados por JS -->
     </section>
 
   </main>
@@ -301,7 +275,7 @@
     <div style="opacity:0.9">Protótipo • Atualize via GitHub</div>
   </footer>
 
-  <!-- WhatsApp flutuante -->
+  <!-- WhatsApp floating — editar o número abaixo -->
   <a id="whatsappBtn" class="btn-wa" href="https://wa.me/5511999999999" target="_blank" title="Contato WhatsApp">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20 4.5A10 10 0 104.5 20L3 21l1.1-2.9A10 10 0 0020 4.5zM12 6.5a5.5 5.5 0 015.5 5.5c0 1.1-.3 2.1-.9 3l.6 1.6-1.7-.5a5.5 5.5 0 01-3 0 5.5 5.5 0 01-3.1-2.7 5.5 5.5 0 01.1-4.7A5.5 5.5 0 0112 6.5z"/></svg>
   </a>
@@ -310,194 +284,214 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Dados produtos atualizados com imagens melhores (URLs públicas confiáveis)
+    /***************
+     * DADOS (edite aqui)
+     * Cada objeto pode ter: id, categoria, nome, descricao, preco, imagem, tags (array), destaque (promo/novo)
+     ****************/
     const produtos = [
-      {id:1,categoria:"Entradas",nome:"Bruschetta Tradicional",descricao:"Pão crocante, tomate, manjericão e azeite extravirgem.",preco:20.00,imagem:"https://images.unsplash.com/photo-1562967916-eb82221dfb1e?auto=format&fit=crop&w=800&q=80",tags:["veg"]},
-      {id:2,categoria:"Entradas",nome:"Bolinho de Bacalhau",descricao:"Croquete crocante servido com maionese temperada.",preco:28.00,imagem:"https://images.unsplash.com/photo-1562967916-eb82221dfb1e?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:3,categoria:"Pratos Principais",nome:"Espaguete à Bolonhesa",descricao:"Molho ragu de carne lenta, parmesão ralado.",preco:36.50,imagem:"https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:4,categoria:"Pratos Principais",nome:"Risoto de Cogumelos",descricao:"Arborio cremoso com mix de cogumelos salteados.",preco:39.00,imagem:"https://images.unsplash.com/photo-1543353071-087092ec393a?auto=format&fit=crop&w=800&q=80",tags:["veg","novo"]},
-      {id:5,categoria:"Pratos Principais",nome:"Frango ao Curry",descricao:"Frango ao molho curry suave e arroz basmati.",preco:42.00,imagem:"https://images.unsplash.com/photo-1600891964798-cf8d79990b13?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:6,categoria:"Sobremesas",nome:"Pudim de Leite",descricao:"Pudim tradicional com calda aveludada.",preco:14.00,imagem:"https://images.unsplash.com/photo-1559628239-0d6d76d1a414?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:7,categoria:"Sobremesas",nome:"Taça de Sorvete",descricao:"Três bolas com calda à escolha.",preco:15.00,imagem:"https://images.unsplash.com/photo-1505253210343-d6e760a4a869?auto=format&fit=crop&w=800&q=80",tags:["promo"],destaque:"promo"},
-      {id:8,categoria:"Bebidas Não Alcoólicas",nome:"Suco Natural de Laranja",descricao:"Espremido na hora.",preco:8.00,imagem:"https://images.unsplash.com/photo-1570189886747-c7f7c2efc47b?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:9,categoria:"Bebidas Não Alcoólicas",nome:"Cappuccino Cremoso",descricao:"Café espresso com leite aerado e canela.",preco:10.00,imagem:"https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:10,categoria:"Bebidas Alcoólicas",nome:"Cerveja Artesanal (long neck)",descricao:"Lager refrescante — 330ml.",preco:12.00,imagem:"https://images.unsplash.com/photo-1549887534-029bdabe2f8d?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:11,categoria:"Bebidas Alcoólicas",nome:"Vinho Tinto — Cabernet Sauvignon",descricao:"Notas de frutas vermelhas e taninos suaves.",preco:65.00,imagem:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",tags:["promo"],destaque:"promo"},
-      {id:12,categoria:"Bebidas Alcoólicas",nome:"Whisky Single Malt",descricao:"Sabor encorpado com aroma defumado.",preco:120.00,imagem:"https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=800&q=80",tags:[]}
+      {id:1,categoria:"Entradas",nome:"Bruschetta Tradicional",descricao:"Pão crocante, tomate, manjericão e azeite extravirgem.",preco:20.00,imagem:"https://images.unsplash.com/photo-1572441711309-6c0866a3b898?auto=format&fit=crop&w=800&q=80",tags:["veg"]},
+      {id:2,categoria:"Entradas",nome:"Bolinho de Bacalhau",descricao:"Croquete crocante servido com maionese temperada.",preco:28.00,imagem:"https://images.unsplash.com/photo-1604908177522-1f8f7b6a5c6c?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:3,categoria:"Pratos Principais",nome:"Lasanha Vegetariana",descricao:"Camadas de massa fresca, molho de tomate e queijo gratinado.",preco:45.00,imagem:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",tags:["veg","promo"],destaque:"promo"},
+      {id:4,categoria:"Pratos Principais",nome:"Filé Mignon ao Molho Madeira",descricao:"Carne suculenta com molho madeira tradicional.",preco:60.00,imagem:"https://images.unsplash.com/photo-1562967916-eb82221dfb43?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:5,categoria:"Sobremesas",nome:"Taça de Sorvete",descricao:"Sorvete de creme com calda de frutas vermelhas.",preco:18.00,imagem:"https://images.unsplash.com/photo-1505253210343-87449a229aee?auto=format&fit=crop&w=800&q=80",tags:["promo"],destaque:"promo"},
+      {id:6,categoria:"Bebidas Alcoólicas",nome:"Vinho Tinto Reserva",descricao:"Vinho tinto seco, perfeito para acompanhar carnes.",preco:120.00,imagem:"images/vinho.avif",tags:["alc"]},
+      // adicione mais produtos conforme precisar
     ];
 
-    // Criar filtro de categorias dinamicamente
-    const categorias = [...new Set(produtos.map(p => p.categoria))];
+    // Estado para controle de maioridade
+    let idadeConfirmada = false;
 
-    const categoriesContainer = document.getElementById('categories');
-
-    categorias.forEach(cat => {
-      const label = document.createElement('label');
-      label.style.cursor = 'pointer';
-      label.style.userSelect = 'none';
-      label.innerHTML = `
-        <input type="checkbox" name="categoria" value="${cat}" checked style="margin-right:6px;">
-        ${cat}
-      `;
-      categoriesContainer.appendChild(label);
+    // Monta filtros categoria dinamicamente
+    const categories = [...new Set(produtos.map(p => p.categoria))];
+    const categoriesWrap = document.getElementById("categories");
+    categories.forEach(cat=>{
+      const btn = document.createElement("button");
+      btn.className = "btn btn-outline-secondary btn-sm";
+      btn.textContent = cat;
+      btn.dataset.cat = cat;
+      btn.addEventListener("click",()=>{
+        if(btn.classList.contains("active")){
+          btn.classList.remove("active");
+          renderProdutos();
+        } else {
+          // desativar outros
+          Array.from(categoriesWrap.children).forEach(b=>b.classList.remove("active"));
+          btn.classList.add("active");
+          renderProdutos(cat);
+        }
+      });
+      categoriesWrap.appendChild(btn);
     });
 
-    const menu = document.getElementById('menu');
-    const searchInput = document.getElementById('search');
-    const sortSelect = document.getElementById('sort');
-    const idadeModal = new bootstrap.Modal(document.getElementById('modalIdade'));
-    const modalDetalhes = new bootstrap.Modal(document.getElementById('modalDetalhes'));
-    const qrModal = new bootstrap.Modal(document.getElementById('modalQR'));
-    const qrBtn = document.getElementById('qrBtn');
+    // Renderiza os produtos na tela, opcionalmente filtrando por categoria ou busca
+    function renderProdutos(categoriaFiltro, busca = ""){
+      const menu = document.getElementById("menu");
+      menu.innerHTML = "";
+      let list = produtos;
 
-    // Controle idade para bebidas alcoólicas
-    let maiorIdadeConfirmada = false;
-    const idadeSimBtn = document.getElementById('idadeSim');
-    const idadeNaoBtn = document.getElementById('idadeNao');
+      if(categoriaFiltro){
+        list = list.filter(p=>p.categoria === categoriaFiltro);
+      }
+      if(busca){
+        const txt = busca.toLowerCase();
+        list = list.filter(p=>
+          p.nome.toLowerCase().includes(txt) ||
+          p.descricao.toLowerCase().includes(txt) ||
+          (p.tags && p.tags.some(t=>t.includes(txt)))
+        );
+      }
 
-    idadeSimBtn.onclick = () => {
-      maiorIdadeConfirmada = true;
-      idadeModal.hide();
-      renderProdutos();
-    };
-    idadeNaoBtn.onclick = () => {
-      maiorIdadeConfirmada = false;
-      idadeModal.hide();
-      alert('Você não pode visualizar bebidas alcoólicas.');
-      // Remove bebidas alcoólicas da visualização
-      renderProdutos();
-    };
+      // Se tem bebida alcoólica e usuário não confirmou idade, não mostra essas bebidas
+      if(!idadeConfirmada){
+        list = list.filter(p=>!p.tags || !p.tags.includes("alc"));
+      }
 
-    // Verificar se tem bebida alcoólica, se sim, pede confirmação
-    function verificarIdade() {
-      const temAlcool = produtos.some(p => p.categoria.toLowerCase().includes('alcoólicas'));
-      if (temAlcool && !maiorIdadeConfirmada) {
-        idadeModal.show();
+      if(list.length === 0){
+        menu.innerHTML = "<p class='text-muted'>Nenhum produto encontrado.</p>";
+        return;
+      }
+
+      list.forEach(p=>{
+        const col = document.createElement("div");
+        col.className = "col-6 col-sm-6 col-md-4 col-lg-3"; // 2 colunas no celular!
+
+        const card = document.createElement("div");
+        card.className = "card-menu";
+
+        const cardWrap = document.createElement("div");
+        cardWrap.style.position = "relative";
+
+        // Imagem - tratar se não carregar
+        const img = document.createElement("img");
+        img.className = "card-img";
+        img.src = p.imagem;
+        img.alt = p.nome;
+        img.onerror = function(){
+          this.src = "https://via.placeholder.com/400x300?text=Imagem+indispon%C3%ADvel";
+        };
+
+        cardWrap.appendChild(img);
+
+        // Rótulo destaque
+        if(p.destaque){
+          const ribbon = document.createElement("div");
+          ribbon.className = "ribbon";
+          ribbon.textContent = p.destaque === "promo" ? "Promoção" : p.destaque === "novo" ? "Novo" : "";
+          cardWrap.appendChild(ribbon);
+        }
+
+        card.appendChild(cardWrap);
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body-custom";
+
+        const title = document.createElement("h5");
+        title.textContent = p.nome;
+        cardBody.appendChild(title);
+
+        const desc = document.createElement("p");
+        desc.style.flexGrow = "1";
+        desc.style.color = "#555";
+        desc.style.fontSize = "0.9rem";
+        desc.textContent = p.descricao;
+        cardBody.appendChild(desc);
+
+        const price = document.createElement("div");
+        price.className = "price";
+        price.textContent = "R$ " + p.preco.toFixed(2).replace(".",",");
+        cardBody.appendChild(price);
+
+        // Tags (ex: veg, alc)
+        if(p.tags && p.tags.length > 0){
+          const badges = document.createElement("div");
+          badges.className = "badges";
+          p.tags.forEach(t=>{
+            const b = document.createElement("span");
+            b.className = "badge bg-secondary";
+            b.textContent = t.toUpperCase();
+            badges.appendChild(b);
+          });
+          cardBody.appendChild(badges);
+        }
+
+        card.appendChild(cardBody);
+
+        // Clique abre modal com detalhes
+        card.addEventListener("click", ()=>{
+          showModalDetalhes(p);
+        });
+
+        col.appendChild(card);
+        menu.appendChild(col);
+      });
+    }
+
+    // Modal detalhes
+    function showModalDetalhes(p){
+      const modal = new bootstrap.Modal(document.getElementById("modalDetalhes"));
+      document.getElementById("modalImagem").src = p.imagem;
+      document.getElementById("modalImagem").alt = p.nome;
+      document.getElementById("modalNome").textContent = p.nome;
+      document.getElementById("modalDescricao").textContent = p.descricao;
+      document.getElementById("modalPreco").textContent = "R$ " + p.preco.toFixed(2).replace(".",",");
+      const tagsContainer = document.getElementById("modalTags");
+      tagsContainer.innerHTML = "";
+      if(p.tags && p.tags.length){
+        p.tags.forEach(t=>{
+          const b = document.createElement("span");
+          b.className = "badge bg-secondary me-1";
+          b.textContent = t.toUpperCase();
+          tagsContainer.appendChild(b);
+        });
+      }
+      modal.show();
+    }
+
+    // Confirmar idade para bebidas alcoólicas
+    function mostrarModalIdade(){
+      const modal = new bootstrap.Modal(document.getElementById("modalIdade"));
+      modal.show();
+
+      document.getElementById("idadeSim").onclick = () => {
+        idadeConfirmada = true;
+        modal.hide();
+        renderProdutos();
+      };
+      document.getElementById("idadeNao").onclick = () => {
+        idadeConfirmada = false;
+        modal.hide();
+        renderProdutos();
+      };
+    }
+
+    // Filtros e busca
+    document.getElementById("search").addEventListener("input", (e)=>{
+      const filtro = e.target.value.trim();
+      // pegar categoria ativa, se houver
+      const catBtn = document.querySelector("#categories .btn.active");
+      const categoria = catBtn ? catBtn.dataset.cat : null;
+      renderProdutos(categoria, filtro);
+    });
+
+    // Botão QR (exemplo simples)
+    document.getElementById("qrBtn").addEventListener("click", ()=>{
+      const modal = new bootstrap.Modal(document.getElementById("modalQR"));
+      // Pode gerar QR dinamicamente — aqui só usa imagem fixa como exemplo
+      const url = window.location.href;
+      const qrImg = document.getElementById("qrImage");
+      qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(url);
+      modal.show();
+    });
+
+    // Na inicialização
+    window.onload = function(){
+      // Se tiver bebida alcoólica, pedir confirmação
+      if(produtos.some(p=>p.tags && p.tags.includes("alc"))){
+        mostrarModalIdade();
       } else {
         renderProdutos();
       }
     }
-
-    function renderProdutos() {
-      // Filtrar por categorias selecionadas
-      const checkedCategorias = Array.from(document.querySelectorAll('input[name="categoria"]:checked')).map(e => e.value);
-      const searchTerm = searchInput.value.trim().toLowerCase();
-
-      let filtrados = produtos.filter(p => checkedCategorias.includes(p.categoria));
-
-      if (searchTerm) {
-        filtrados = filtrados.filter(p =>
-          p.nome.toLowerCase().includes(searchTerm) ||
-          p.descricao.toLowerCase().includes(searchTerm) ||
-          p.tags.some(t => t.toLowerCase().includes(searchTerm))
-        );
-      }
-
-      // Se maiorIdadeConfirmada=false, remove bebidas alcoólicas
-      if (!maiorIdadeConfirmada) {
-        filtrados = filtrados.filter(p => !p.categoria.toLowerCase().includes('alcoólicas'));
-      }
-
-      // Ordenação
-      switch(sortSelect.value) {
-        case 'price-asc':
-          filtrados.sort((a,b) => a.preco - b.preco);
-          break;
-        case 'price-desc':
-          filtrados.sort((a,b) => b.preco - a.preco);
-          break;
-        case 'novo':
-          filtrados.sort((a,b) => (b.tags.includes('novo') ? 1 : 0) - (a.tags.includes('novo') ? 1 : 0));
-          break;
-        default:
-          // Ordem padrão (id)
-          filtrados.sort((a,b) => a.id - b.id);
-      }
-
-      menu.innerHTML = '';
-
-      if(filtrados.length === 0) {
-        menu.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; font-size:1.1rem; color:var(--muted);">Nenhum produto encontrado.</p>`;
-        return;
-      }
-
-      filtrados.forEach(prod => {
-        const card = document.createElement('article');
-        card.classList.add('card-menu');
-        card.style.position = 'relative';
-
-        let ribbonHTML = '';
-        if(prod.destaque === 'promo') ribbonHTML = `<div class="ribbon">Promo</div>`;
-        else if(prod.tags.includes('novo')) ribbonHTML = `<div class="ribbon">Novo</div>`;
-
-        card.innerHTML = `
-          ${ribbonHTML}
-          <img src="${prod.imagem}" alt="${prod.nome}" class="card-img" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250?text=Imagem+Indisponível';" />
-          <div class="card-body-custom">
-            <h5 style="margin-bottom:6px;">${prod.nome}</h5>
-            <p style="flex-grow:1; color:#555; font-size:0.9rem;">${prod.descricao}</p>
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div class="price">R$ ${prod.preco.toFixed(2)}</div>
-              <div class="badges">
-                ${prod.tags.map(t => `<span class="badge bg-secondary text-uppercase" style="font-size:0.7rem">${t}</span>`).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-
-        card.onclick = () => abrirModal(prod);
-        menu.appendChild(card);
-      });
-    }
-
-    function abrirModal(prod) {
-      document.getElementById('modalImagem').src = prod.imagem;
-      document.getElementById('modalImagem').alt = prod.nome;
-      document.getElementById('modalNome').textContent = prod.nome;
-      document.getElementById('modalDescricao').textContent = prod.descricao;
-      document.getElementById('modalPreco').textContent = `R$ ${prod.preco.toFixed(2)}`;
-
-      const modalTags = document.getElementById('modalTags');
-      modalTags.innerHTML = '';
-      prod.tags.forEach(t => {
-        const span = document.createElement('span');
-        span.className = 'badge bg-secondary text-uppercase';
-        span.style.fontSize = '0.75rem';
-        span.style.marginRight = '6px';
-        span.textContent = t;
-        modalTags.appendChild(span);
-      });
-
-      modalDetalhes.show();
-    }
-
-    // Eventos
-    searchInput.addEventListener('input', () => {
-      renderProdutos();
-    });
-
-    sortSelect.addEventListener('change', () => {
-      renderProdutos();
-    });
-
-    categoriesContainer.addEventListener('change', () => {
-      renderProdutos();
-    });
-
-    // QR code simples do site (aqui só um exemplo gerado)
-    qrBtn.onclick = () => {
-      // Exemplo QR para URL fixa, pode alterar conforme seu domínio
-      const url = window.location.href;
-      const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`;
-      document.getElementById('qrImage').src = qrSrc;
-      qrModal.show();
-    };
-
-    // Ao carregar a página
-    window.onload = () => {
-      verificarIdade();
-    };
   </script>
 </body>
 </html>
-
