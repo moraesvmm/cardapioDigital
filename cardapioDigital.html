@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cardápio Digital — Protótipo</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent-1: #f6b93b; /* amarelo-laranja suave */
+      --accent-2: #f39c12; /* laranja mais quente */
+      --muted: #6c757d;
+      --card-radius: 14px;
+    }
+
+    html,body{height:100%}
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fbfbfc 0%, #f0f2f5 100%);
+      margin:0;
+      padding-bottom:80px;
+      color:#222;
+    }
+
+    /* cabeçalho compacto e chamativo */
+    .site-header{
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      color: #fff;
+      height:56px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:0 18px;
+      box-shadow: 0 6px 18px rgba(243,156,18,0.12);
+    }
+    .brand-title{
+      font-family: "Playfair Display", serif;
+      font-size:1.15rem;
+      letter-spacing:0.6px;
+      margin:0;
+    }
+    .brand-sub{
+      font-size:0.75rem;
+      opacity:0.95;
+      margin:0;
+    }
+
+    .container-main{
+      max-width:1200px;
+      margin:22px auto;
+      padding:0 16px;
+    }
+
+    /* controls topo */
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .search-input{
+      flex:1 1 320px;
+      max-width:620px;
+    }
+    .filter-wrap{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    /* cards */
+    .card-menu{
+      border-radius:var(--card-radius);
+      overflow:hidden;
+      transition: transform .28s ease, box-shadow .28s ease;
+      box-shadow: 0 3px 12px rgba(18,18,18,0.06);
+      background:#fff;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+    .card-menu:hover{
+      transform:translateY(-8px);
+      box-shadow:0 14px 30px rgba(18,18,18,0.12);
+    }
+    .card-img{
+      height:170px;
+      object-fit:cover;
+      width:100%;
+      display:block;
+    }
+    .card-body-custom{
+      padding:12px 14px;
+      flex:1 1 auto;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .price{
+      color:#2d9958;
+      font-weight:700;
+      font-size:1.02rem;
+    }
+    .badges { gap:6px; display:flex; flex-wrap:wrap; }
+
+    /* promo ribbon */
+    .ribbon {
+      position:absolute; top:10px; left:10px;
+      background:linear-gradient(90deg,#ff6b6b,#ff8e72);
+      color:white; padding:6px 10px; border-radius:8px; font-weight:700;
+      font-size:0.78rem;
+      box-shadow:0 6px 18px rgba(255,86,86,0.12);
+    }
+
+    /* modal image */
+    #modalImagem { width:100%; max-height:360px; object-fit:cover; border-radius:8px; }
+
+    /* footer fixed */
+    footer{
+      position:fixed;
+      bottom:0; left:0; right:0;
+      background:rgba(44,62,80,0.96);
+      color:#fff;
+      padding:10px 14px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      align-items:center;
+      font-size:0.95rem;
+      z-index:60;
+    }
+
+    /* whatsapp float */
+    .btn-wa{
+      position:fixed;
+      right:18px;
+      bottom:84px;
+      z-index:80;
+      border-radius:50%;
+      width:58px; height:58px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      background:linear-gradient(180deg,#25D366,#128C7E);
+      color:#fff;
+      font-size:22px;
+      text-decoration:none;
+    }
+
+    /* small screens */
+    @media (max-width:576px){
+      .card-img{ height:140px; }
+      .controls{ gap:8px; }
+      footer{ font-size:0.85rem; padding:8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,0.13);display:flex;align-items:center;justify-content:center;font-weight:700;">
+        🍽
+      </div>
+      <div>
+        <p class="brand-title">Restaurante Prototipo</p>
+        <p class="brand-sub">Sabores que conquistam — cardápio digital</p>
+      </div>
+    </div>
+    <div style="margin-left:auto;color:rgba(255,255,255,0.95);font-weight:600">Protótipo para prospecção</div>
+  </header>
+
+  <main class="container-main">
+
+    <div class="controls">
+      <div class="search-input input-group">
+        <span class="input-group-text"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <input id="search" class="form-control" placeholder="Buscar prato, ingrediente ou tag (ex: veg, promo)" />
+        <button id="qrBtn" class="btn btn-outline-secondary" title="Gerar QR do cardápio">QR</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <select id="sort" class="form-select" style="width:150px">
+          <option value="popular">Ordenar: padrão</option>
+          <option value="price-asc">Preço ↑</option>
+          <option value="price-desc">Preço ↓</option>
+          <option value="novo">Novos</option>
+        </select>
+        <div class="filter-wrap" id="categories"></div>
+      </div>
+    </div>
+
+    <div id="promoBanner" class="mb-3" style="display:flex;gap:10px;align-items:center;">
+      <div style="flex:1;border-radius:12px;padding:12px 16px;background:linear-gradient(90deg, rgba(243,156,18,0.12), rgba(246,185,59,0.06));display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <strong>Combo do dia:</strong> Lasanha vegetariana + Taça de sorvete por <strong>R$ 45,00</strong>
+        </div>
+        <div style="font-size:0.9rem;color:var(--muted)">Válido hoje ✦ Destaque para prospecção</div>
+      </div>
+    </div>
+
+    <section id="menu" class="row g-4">
+      <!-- cards injetados por JS -->
+    </section>
+
+  </main>
+
+  <!-- Modal detalhes -->
+  <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background:#2c3e50;color:#fff">
+          <h5 class="modal-title" id="modalDetalhesLabel">Detalhes</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-3">
+          <img id="modalImagem" src="" alt="" class="mb-3" />
+          <h4 id="modalNome"></h4>
+          <p id="modalDescricao" style="color:#444"></p>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+            <div class="price" id="modalPreco"></div>
+            <div id="modalTags" class="badges"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal aviso idade -->
+  <div class="modal fade" id="modalIdade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background:var(--accent-2);color:#fff">
+          <h5 class="modal-title">Aviso — Bebidas alcoólicas</h5>
+        </div>
+        <div class="modal-body">
+          <p>Este cardápio contém bebidas alcoólicas. É permitido apenas para maiores de 18 anos.</p>
+          <div class="d-flex gap-2 justify-content-end">
+            <button id="idadeNao" class="btn btn-outline-secondary btn-sm">Não</button>
+            <button id="idadeSim" class="btn btn-success btn-sm">Tenho 18+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal QR -->
+  <div class="modal fade" id="modalQR" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background:#34495e;color:#fff">
+          <h5 class="modal-title">QRCode do Cardápio</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center p-3">
+          <img id="qrImage" src="" alt="QR" style="width:180px;height:180px"/>
+          <p class="mt-2 small text-muted">Escaneie para abrir este cardápio no celular</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer fixo -->
+  <footer>
+    <div>📍 Rua Exemplo, 123 — Atendimento: 12:00–23:00</div>
+    <div style="opacity:0.85"> • </div>
+    <div style="opacity:0.9">Protótipo • Atualize via GitHub</div>
+  </footer>
+
+  <!-- WhatsApp floating — editar o número abaixo -->
+  <a id="whatsappBtn" class="btn-wa" href="https://wa.me/5511999999999" target="_blank" title="Contato WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20 4.5A10 10 0 104.5 20L3 21l1.1-2.9A10 10 0 0020 4.5zM12 6.5a5.5 5.5 0 015.5 5.5c0 1.1-.3 2.1-.9 3l.6 1.6-1.7-.5a5.5 5.5 0 01-3 0 5.5 5.5 0 01-3.1-2.7 5.5 5.5 0 01.1-4.7A5.5 5.5 0 0112 6.5z"/></svg>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /***************
+     * DADOS (edite aqui)
+     * Cada objeto pode ter: id, categoria, nome, descricao, preco, imagem, tags (array), destaque (promo/novo)
+     ****************/
+    const produtos = [
+      {id:1,categoria:"Entradas",nome:"Bruschetta Tradicional",descricao:"Pão crocante, tomate, manjericão e azeite extravirgem.",preco:20.00,imagem:"https://images.unsplash.com/photo-1572441711309-6c0866a3b898?auto=format&fit=crop&w=800&q=80",tags:["veg"]},
+      {id:2,categoria:"Entradas",nome:"Bolinho de Bacalhau",descricao:"Croquete crocante servido com maionese temperada.",preco:28.00,imagem:"https://images.unsplash.com/photo-1604908177522-1f8f7b6a5c6c?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:3,categoria:"Pratos Principais",nome:"Espaguete à Bolonhesa",descricao:"Molho ragu de carne lenta, parmesão ralado.",preco:36.50,imagem:"https://images.unsplash.com/photo-1512058564366-c9e1c4198a1e?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:4,categoria:"Pratos Principais",nome:"Risoto de Cogumelos",descricao:"Arborio cremoso com mix de cogumelos salteados.",preco:39.00,imagem:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80",tags:["veg","novo"]},
+      {id:5,categoria:"Pratos Principais",nome:"Frango ao Curry",descricao:"Frango ao molho curry suave e arroz basmati.",preco:42.00,imagem:"https://images.unsplash.com/photo-1600891964798-cf8d79990b13?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:6,categoria:"Sobremesas",nome:"Pudim de Leite",descricao:"Pudim tradicional com calda aveludada.",preco:14.00,imagem:"https://images.unsplash.com/photo-1563805042-7684bfbf1d5b?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:7,categoria:"Sobremesas",nome:"Taça de Sorvete",descricao:"Três bolas com calda à escolha.",preco:15.00,imagem:"https://images.unsplash.com/photo-1505253210343-d6e760a4a869?auto=format&fit=crop&w=800&q=80",tags:["promo"],destaque:"promo"},
+      {id:8,categoria:"Bebidas Não Alcoólicas",nome:"Suco Natural de Laranja",descricao:"Espremido na hora.",preco:8.00,imagem:"https://images.unsplash.com/photo-1570189886747-c7f7c2efc47b?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:9,categoria:"Bebidas Não Alcoólicas",nome:"Cappuccino Cremoso",descricao:"Café espresso com leite aerado e canela.",preco:10.00,imagem:"https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:10,categoria:"Bebidas Alcoólicas",nome:"Cerveja Artesanal (long neck)",descricao:"Lager refrescante — 330ml.",preco:12.00,imagem:"images/721c8c91-f22c-4bc6-af26-96fb80948d04.png",tags:[]},
+      {id:11,categoria:"Bebidas Alcoólicas",nome:"Vinho Tinto — Cabernet Sauvignon",descricao:"Notas de frutas vermelhas e taninos suaves.",preco:65.00,imagem:"himages/vinho.avif",tags:[]},
+      {id:12,categoria:"Bebidas Alcoólicas",nome:"Whisky 12 anos",descricao:"Single malt envelhecido.",preco:120.00,imagem:"https://images.unsplash.com/photo-1510626176961-4bfa30f2ae0b?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:13,categoria:"Pratos Principais",nome:"Lasanha Vegetariana (combo)",descricao:"Lasanha de legumes com molho bechamel.",preco:44.00,imagem:"https://images.unsplash.com/photo-1606755962774-5b69c3c7e97f?auto=format&fit=crop&w=800&q=80",tags:["veg","promo"],destaque:"promo"},
+      {id:14,categoria:"Entradas",nome:"Salada Caesar com Frango",descricao:"Mix de folhas, frango grelhado e molho Caesar.",preco:24.00,imagem:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",tags:[]},
+      {id:15,categoria:"Bebidas Não Alcoólicas",nome:"Água Mineral (500ml)",descricao:"Com ou sem gás.",preco:6.00,imagem:"https://images.unsplash.com/photo-1576444689857-7f8e7a9820c4?auto=format&fit=crop&w=800&q=80",tags:[]}
+    ];
+
+    // VARS
+    let categoriaSelecionada = "Todos";
+    let idadeConfirmada = false;
+
+    // ELEMENTOS
+    const categoriesEl = document.getElementById("categories");
+    const menuEl = document.getElementById("menu");
+    const searchEl = document.getElementById("search");
+    const sortEl = document.getElementById("sort");
+    const qrBtn = document.getElementById("qrBtn");
+
+    // INICIALIZA categorias e render
+    function initCategorias(){
+      const cats = ["Todos", ...new Set(produtos.map(p=>p.categoria))];
+      categoriesEl.innerHTML = "";
+      cats.forEach(cat=>{
+        const btn = document.createElement("button");
+        btn.className = "btn btn-sm " + (cat===categoriaSelecionada ? "btn-dark" : "btn-outline-dark");
+        btn.textContent = cat;
+        btn.onclick = ()=>{
+          if(cat==="Bebidas Alcoólicas" && !idadeConfirmada){
+            const md = new bootstrap.Modal(document.getElementById("modalIdade"));
+            md.show();
+            return;
+          }
+          categoriaSelecionada = cat;
+          initCategorias();
+          renderProdutos();
+        };
+        categoriesEl.appendChild(btn);
+      });
+    }
+
+    // Render produtos considerando busca, filtro e ordenação
+    function renderProdutos(){
+      const q = searchEl.value.trim().toLowerCase();
+      let list = produtos.filter(p=>{
+        if(categoriaSelecionada !== "Todos" && p.categoria !== categoriaSelecionada) return false;
+        if(q==="") return true;
+        // procura em nome, descricao, tags
+        if(p.nome.toLowerCase().includes(q)) return true;
+        if(p.descricao.toLowerCase().includes(q)) return true;
+        if(p.tags && p.tags.join(" ").toLowerCase().includes(q)) return true;
+        return false;
+      });
+
+      // ordenação
+      const sort = sortEl.value;
+      if(sort==="price-asc") list.sort((a,b)=>a.preco-b.preco);
+      if(sort==="price-desc") list.sort((a,b)=>b.preco-a.preco);
+      if(sort==="novo") list.sort((a,b)=> (b.destaque==="novo") - (a.destaque==="novo") );
+      // default: mantem ordem
+
+      menuEl.innerHTML = "";
+      if(list.length===0){
+        menuEl.innerHTML = '<div class="col-12 text-center text-muted py-5">Nenhum item encontrado.</div>';
+        return;
+      }
+
+      list.forEach(p=>{
+        const col = document.createElement("div");
+        col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
+
+        const cardWrap = document.createElement("div");
+        cardWrap.style.position="relative";
+
+        const card = document.createElement("div");
+        card.className = "card-menu";
+
+        const img = document.createElement("img");
+        img.className="card-img";
+        img.src = p.imagem;
+        img.alt = p.nome;
+        img.loading = "lazy";
+
+        // ribbon promo/novo
+        if(p.destaque){
+          const r = document.createElement("div");
+          r.className = "ribbon"; r.textContent = p.destaque.toUpperCase();
+          cardWrap.appendChild(r);
+        }
+
+        const body = document.createElement("div");
+        body.className="card-body-custom";
+
+        const titleRow = document.createElement("div");
+        titleRow.style.display="flex"; titleRow.style.justifyContent="space-between"; titleRow.style.alignItems="center";
+
+        const h5 = document.createElement("h5");
+        h5.style.margin=0; h5.style.fontSize="1rem"; h5.textContent = p.nome;
+
+        const price = document.createElement("div");
+        price.className = "price";
+        price.textContent = `R$ ${p.preco.toFixed(2).replace('.',',')}`;
+
+        titleRow.appendChild(h5); titleRow.appendChild(price);
+
+        const desc = document.createElement("p");
+        desc.style.margin=0; desc.style.color="#666"; desc.style.fontSize="0.88rem";
+        desc.textContent = p.descricao.length>80 ? p.descricao.slice(0,80)+'…' : p.descricao;
+
+        const badgeWrap = document.createElement("div");
+        badgeWrap.className="badges mt-2";
+        if(p.tags && p.tags.length){
+          p.tags.forEach(t=>{
+            const b = document.createElement("span");
+            b.className = "badge bg-light text-dark";
+            b.style.fontWeight=700; b.style.fontSize="0.78rem";
+            if(t==="veg") b.textContent = "🌿 Veg";
+            else if(t==="promo") b.textContent = "🔥 Promo";
+            else if(t==="novo") b.textContent = "✨ Novo";
+            else b.textContent = t;
+            badgeWrap.appendChild(b);
+          });
+        }
+
+        body.appendChild(titleRow);
+        body.appendChild(desc);
+        body.appendChild(badgeWrap);
+
+        card.appendChild(img);
+        card.appendChild(body);
+        cardWrap.appendChild(card);
+        col.appendChild(cardWrap);
+        menuEl.appendChild(col);
+
+        // abrir modal detalhes
+        card.addEventListener("click", ()=> abrirModal(p));
+      });
+    }
+
+    // abrir modal com info
+    function abrirModal(p){
+      document.getElementById("modalNome").textContent = p.nome;
+      document.getElementById("modalDescricao").textContent = p.descricao;
+      document.getElementById("modalPreco").textContent = `R$ ${p.preco.toFixed(2).replace('.',',')}`;
+      document.getElementById("modalImagem").src = p.imagem;
+      // tags
+      const mount = document.getElementById("modalTags");
+      mount.innerHTML = "";
+      if(p.tags && p.tags.length){
+        p.tags.forEach(t=>{
+          const s = document.createElement("span");
+          s.className="badge bg-light text-dark me-2";
+          s.style.fontWeight=700;
+          if(t==="veg") s.textContent="🌿 Veg";
+          else if(t==="promo") s.textContent="🔥 Promo";
+          else if(t==="novo") s.textContent="✨ Novo";
+          else s.textContent=t;
+          mount.appendChild(s);
+        });
+      }
+      const md = new bootstrap.Modal(document.getElementById("modalDetalhes"));
+      md.show();
+    }
+
+    // idade modal handlers
+    document.getElementById("idadeSim").addEventListener("click", ()=>{
+      idadeConfirmada = true;
+      const md = bootstrap.Modal.getInstance(document.getElementById("modalIdade"));
+      md.hide();
+      categoriaSelecionada = "Bebidas Alcoólicas";
+      initCategorias();
+      renderProdutos();
+    });
+    document.getElementById("idadeNao").addEventListener("click", ()=>{
+      idadeConfirmada = false;
+      const md = bootstrap.Modal.getInstance(document.getElementById("modalIdade"));
+      md.hide();
+      categoriaSelecionada = "Todos";
+      initCategorias();
+      renderProdutos();
+    });
+
+    // Search & sort
+    searchEl.addEventListener("input", ()=> renderProdutos());
+    sortEl.addEventListener("change", ()=> renderProdutos());
+
+    // QR button -> gera e mostra QR do location.href usando api pública
+    qrBtn.addEventListener("click", ()=>{
+      const url = encodeURIComponent(location.href);
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}`;
+      document.getElementById("qrImage").src = qrUrl;
+      const md = new bootstrap.Modal(document.getElementById("modalQR"));
+      md.show();
+    });
+
+    // inicia
+    document.addEventListener("DOMContentLoaded", ()=>{
+      initCategorias();
+      renderProdutos();
+    });
+
+    // DICAS RÁPIDAS:
+    // - Para editar o cardápio: altere o array "produtos" no topo (insira/edite objetos).
+    // - Para mudar o número do WhatsApp: edite o href do elemento #whatsappBtn (formato: https://wa.me/55<DDD><NUM>).
+    // - Se desejar separar o JSON em arquivo externo depois (produtos.json), eu te mostro como fazer fetch() e manter controle via Git.
+  </script>
+</body>
+</html>
