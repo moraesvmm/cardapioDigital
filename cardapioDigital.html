@@ -1,129 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cardápio Digital</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cardápio — duas colunas sempre</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #fffaf3;
-        color: #333;
-    }
+  :root{
+    --bg: #fffaf3;
+    --accent: #f39c12; /* padrão de cor do site */
+    --muted: #6c757d;
+    --card-radius: 12px;
+  }
 
-    header {
-        background-color: #d35400;
-        color: white;
-        text-align: center;
-        padding: 15px;
-        font-size: 24px;
-        font-weight: bold;
-    }
+  /* reset simples */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#222;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 
-    .menu {
-        display: grid;
-        grid-template-columns: 1fr 1px 1fr; /* coluna esquerda | linha divisória | coluna direita */
-        gap: 15px;
-        padding: 15px;
-        align-items: start;
-    }
+  header{
+    background: linear-gradient(90deg,var(--accent),#f6b93b);
+    color:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;
+  }
+  header h1{font-size:1rem;margin:0;font-weight:700}
 
-    .divider {
-        background-color: #e0c3a1; /* cor do divisor combinando com o tema */
-        width: 1px;
-    }
+  /* O container que controla as duas colunas + divisor */
+  #menu{
+    /* força grid e usa seletores com especificidade maior caso Bootstrap esteja carregado */
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) 1px minmax(0,1fr); /* coluna esquerda | divisor | coluna direita */
+    gap: 16px;
+    padding: 14px;
+    max-width: 960px;
+    margin: 14px auto;
+    align-items: start;
+  }
 
-    .col {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+  /* linha divisória fina e minimalista */
+  #menu .divider{
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.03));
+    width: 1px;
+    height: 100%;
+    border-radius: 1px;
+    justify-self: center;
+  }
 
-    .item {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        padding: 10px;
-        text-align: center;
-    }
+  /* colunas internas (permitir encolher com min-width:0!) */
+  .menu-col{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    min-width: 0; /* CRUCIAL para evitar que conteúdo "empurre" a coluna e cause quebra */
+  }
 
-    .item img {
-        max-width: 100%;
-        border-radius: 10px;
-    }
+  /* card do produto */
+  .card{
+    background:#fff;
+    border-radius: var(--card-radius);
+    overflow:hidden;
+    box-shadow: 0 6px 18px rgba(18,18,18,0.06);
+    padding:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    min-width:0; /* importante */
+  }
+  .card img{
+    width:88px;
+    height:72px;
+    object-fit:cover;
+    border-radius:8px;
+    flex-shrink:0;
+  }
+  .card .info{flex:1;min-width:0} /* min-width:0 para permitir wrap do texto */
+  .card .info h4{margin:0;font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .info p{margin:4px 0 0;font-size:0.83rem;color:var(--muted);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .price{font-weight:700;color:#2d9958;margin-left:auto;flex-shrink:0;font-size:0.95rem}
 
-    .item h3 {
-        margin: 10px 0 5px;
-        color: #d35400;
-    }
+  /* responsivo: manter 2 colunas sempre — apenas reduz espaçamento em telas extremamente pequenas */
+  @media (max-width:360px){
+    #menu{gap:8px;padding:8px}
+    .card img{width:72px;height:56px}
+    .card .info h4{font-size:0.88rem}
+  }
 
-    .item p {
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .item span {
-        display: block;
-        margin-top: 5px;
-        font-weight: bold;
-        color: #27ae60;
-    }
+  /* nota visual para o rodapé */
+  footer{padding:10px;text-align:center;color:var(--muted);font-size:0.9rem}
 </style>
 </head>
 <body>
 
-<header>🍽 Cardápio Digital</header>
+<header>
+  <div style="width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center">🍽</div>
+  <h1>Restaurante — Cardápio (2 colunas)</h1>
+</header>
 
-<div class="menu">
-    <!-- Coluna Esquerda -->
-    <div class="col">
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Prato 1">
-            <h3>Prato 1</h3>
-            <p>Descrição breve do prato.</p>
-            <span>R$ 25,00</span>
-        </div>
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Prato 2">
-            <h3>Prato 2</h3>
-            <p>Descrição breve do prato.</p>
-            <span>R$ 30,00</span>
-        </div>
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Prato 3">
-            <h3>Prato 3</h3>
-            <p>Descrição breve do prato.</p>
-            <span>R$ 28,00</span>
-        </div>
-    </div>
+<!-- Grid: left column | divider | right column -->
+<section id="menu" aria-label="Menu de produtos">
+  <div id="col-left" class="menu-col"><!-- cards gerados aqui --></div>
+  <div class="divider" aria-hidden="true"></div>
+  <div id="col-right" class="menu-col"><!-- cards gerados aqui --></div>
+</section>
 
-    <!-- Divisor -->
-    <div class="divider"></div>
+<footer>Prototipo — duas colunas mesmo no celular • cor do divisor combina com o tema</footer>
 
-    <!-- Coluna Direita -->
-    <div class="col">
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Bebida 1">
-            <h3>Bebida 1</h3>
-            <p>Descrição breve da bebida.</p>
-            <span>R$ 8,00</span>
-        </div>
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Bebida 2">
-            <h3>Bebida 2</h3>
-            <p>Descrição breve da bebida.</p>
-            <span>R$ 10,00</span>
-        </div>
-        <div class="item">
-            <img src="https://via.placeholder.com/150" alt="Sobremesa 1">
-            <h3>Sobremesa 1</h3>
-            <p>Descrição breve da sobremesa.</p>
-            <span>R$ 12,00</span>
-        </div>
-    </div>
-</div>
+<script>
+  // Exemplo de produtos (você pode usar o array que já tem)
+  const produtos = [
+    {nome:"Bruschetta Tradicional", preco:20, img:"https://images.unsplash.com/photo-1572441711309-6c0866a3b898?w=800"},
+    {nome:"Bolinho de Bacalhau", preco:28, img:"https://images.unsplash.com/photo-1604908177522-1f8f7b6a5c6c?w=800"},
+    {nome:"Salada Caprese", preco:22, img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800"},
+    {nome:"Lasanha Vegetariana", preco:45, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800"},
+    {nome:"Filé Mignon ao Molho Madeira", preco:60, img:"https://images.unsplash.com/photo-1562967916-eb82221dfb43?w=800"},
+    {nome:"Risoto de Cogumelos", preco:48, img:"https://images.unsplash.com/photo-1543353071-873f17a7a088?w=800"},
+    {nome:"Taça de Sorvete", preco:18, img:"https://images.unsplash.com/photo-1543353071-0877df9cc836?w=800"},
+    {nome:"Cerveja Artesanal IPA", preco:18, img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800"},
+    {nome:"Vinho Tinto Cabernet", preco:75, img:"https://images.unsplash.com/photo-1509228627152-34f97e95b9bf?w=800"},
+    {nome:"Refrigerante Cola", preco:7, img:"https://images.unsplash.com/photo-1565697293704-cbde8e5d113a?w=800"},
+    {nome:"Água Mineral com Gás", preco:6, img:"https://images.unsplash.com/photo-1542417763-7a11aaad3ef4?w=800"},
+    {nome:"Caipirinha Tradicional", preco:25, img:"https://images.unsplash.com/photo-1570922991211-80a484ea4e39?w=800"}
+  ];
+
+  const left = document.getElementById('col-left');
+  const right = document.getElementById('col-right');
+
+  // Distribui alternadamente entre as duas colunas para equilíbrio visual
+  produtos.forEach((p, i) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.nome}" loading="lazy" onerror="this.src='https://via.placeholder.com/120x90?text=Sem+imagem'"/>
+      <div class="info">
+        <h4 title="${p.nome}">${p.nome}</h4>
+        <p>${(p.descricao || '')}</p>
+      </div>
+      <div class="price">R$ ${p.preco.toFixed(2).replace('.',',')}</div>
+    `;
+    // se quiser balancear visualmente por altura, pode-se escolher pela menor coluna (extra) — aqui usamos alternância simples
+    if (i % 2 === 0) left.appendChild(card); else right.appendChild(card);
+  });
+
+  /* DEBUG helpers (caso não apareça como duas colunas):
+     - Abra DevTools → selecione o #menu → computado → display: deve ser "grid"
+     - Se tiver bootstrap, verifique se há .row em algum ancestor; remover/alterar resolve.
+     - Se ainda empilhar em 1 coluna, verifique largura do viewport e se algum CSS externo está definindo grid-template-columns em outro seletor.
+  */
+</script>
 
 </body>
 </html>
