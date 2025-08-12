@@ -7,80 +7,121 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
         margin: 0;
         padding: 0;
+        background-color: #fffaf3;
+        color: #333;
     }
+
     header {
-        background-color: #d32f2f;
+        background-color: #d35400;
         color: white;
-        padding: 15px;
         text-align: center;
+        padding: 15px;
+        font-size: 24px;
+        font-weight: bold;
     }
-    h1 {
-        margin: 0;
-    }
-    .container {
+
+    .menu {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 🔹 sempre 2 colunas */
+        grid-template-columns: 1fr 1px 1fr; /* coluna esquerda | linha divisória | coluna direita */
         gap: 15px;
         padding: 15px;
+        align-items: start;
     }
+
+    .divider {
+        background-color: #e0c3a1; /* cor do divisor combinando com o tema */
+        width: 1px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .item {
         background-color: white;
-        border-radius: 8px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         padding: 10px;
         text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+
     .item img {
         max-width: 100%;
-        border-radius: 8px;
+        border-radius: 10px;
     }
-    .item h2 {
-        font-size: 18px;
+
+    .item h3 {
         margin: 10px 0 5px;
+        color: #d35400;
     }
+
     .item p {
+        margin: 0;
         font-size: 14px;
-        color: #555;
     }
+
     .item span {
+        display: block;
+        margin-top: 5px;
         font-weight: bold;
-        color: #d32f2f;
+        color: #27ae60;
     }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>🍽 Cardápio Digital</h1>
-</header>
+<header>🍽 Cardápio Digital</header>
 
-<div class="container">
-    <div class="item">
-        <img src="https://via.placeholder.com/150" alt="Produto 1">
-        <h2>Hambúrguer Artesanal</h2>
-        <p>Pão brioche, carne 180g, queijo cheddar, alface e tomate.</p>
-        <span>R$ 29,90</span>
+<div class="menu">
+    <!-- Coluna Esquerda -->
+    <div class="col">
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Prato 1">
+            <h3>Prato 1</h3>
+            <p>Descrição breve do prato.</p>
+            <span>R$ 25,00</span>
+        </div>
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Prato 2">
+            <h3>Prato 2</h3>
+            <p>Descrição breve do prato.</p>
+            <span>R$ 30,00</span>
+        </div>
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Prato 3">
+            <h3>Prato 3</h3>
+            <p>Descrição breve do prato.</p>
+            <span>R$ 28,00</span>
+        </div>
     </div>
-    <div class="item">
-        <img src="https://via.placeholder.com/150" alt="Produto 2">
-        <h2>Pizza de Calabresa</h2>
-        <p>Molho artesanal, mussarela, calabresa e cebola roxa.</p>
-        <span>R$ 42,00</span>
-    </div>
-    <div class="item">
-        <img src="https://via.placeholder.com/150" alt="Produto 3">
-        <h2>Suco Natural</h2>
-        <p>Laranja, abacaxi ou limão. 300ml.</p>
-        <span>R$ 9,90</span>
-    </div>
-    <div class="item">
-        <img src="https://via.placeholder.com/150" alt="Produto 4">
-        <h2>Cerveja Artesanal 🍺</h2>
-        <p>Venda proibida para menores de 18 anos.</p>
-        <span>R$ 18,00</span>
+
+    <!-- Divisor -->
+    <div class="divider"></div>
+
+    <!-- Coluna Direita -->
+    <div class="col">
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Bebida 1">
+            <h3>Bebida 1</h3>
+            <p>Descrição breve da bebida.</p>
+            <span>R$ 8,00</span>
+        </div>
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Bebida 2">
+            <h3>Bebida 2</h3>
+            <p>Descrição breve da bebida.</p>
+            <span>R$ 10,00</span>
+        </div>
+        <div class="item">
+            <img src="https://via.placeholder.com/150" alt="Sobremesa 1">
+            <h3>Sobremesa 1</h3>
+            <p>Descrição breve da sobremesa.</p>
+            <span>R$ 12,00</span>
+        </div>
     </div>
 </div>
 
