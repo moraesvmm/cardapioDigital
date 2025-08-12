@@ -7,78 +7,53 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
         margin: 0;
-        padding: 0;
+        background-color: #fafafa;
     }
-
     header {
         background-color: #d32f2f;
         color: white;
-        text-align: center;
         padding: 15px;
+        text-align: center;
     }
-
     h1 {
         margin: 0;
     }
-
-    main {
-        padding: 20px;
+    .container {
+        padding: 15px;
     }
-
-    .categoria {
-        margin-bottom: 40px;
-    }
-
-    .categoria h2 {
-        background-color: #ffccbc;
-        padding: 10px;
-        border-radius: 8px;
-    }
-
-    .produtos {
+    .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* Sempre 2 colunas */
         gap: 15px;
     }
-
-    .produto {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    .card {
+        background: white;
+        border-radius: 10px;
         padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-
-    .produto img {
-        max-width: 100%;
-        border-radius: 8px;
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
     }
-
-    .produto h3 {
+    .card h3 {
         margin: 10px 0 5px;
     }
-
-    .produto p {
+    .card p {
         margin: 0;
+        color: #555;
+    }
+    .price {
         font-weight: bold;
         color: #d32f2f;
-    }
-
-    footer {
-        background-color: #d32f2f;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-    }
-
-    /* Forçar duas colunas no celular */
-    @media (max-width: 600px) {
-        .produtos {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        margin-top: 5px;
     }
 </style>
 </head>
@@ -88,91 +63,67 @@
     <h1>🍽 Cardápio Digital</h1>
 </header>
 
-<main>
-
-    <section class="categoria">
-        <h2>🍔 Lanches</h2>
-        <div class="produtos">
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="X-Burger">
-                <h3>X-Burger</h3>
-                <p>R$ 15,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="X-Salada">
-                <h3>X-Salada</h3>
-                <p>R$ 17,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="X-Bacon">
-                <h3>X-Bacon</h3>
-                <p>R$ 20,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="X-Tudo">
-                <h3>X-Tudo</h3>
-                <p>R$ 25,00</p>
-            </div>
+<div class="container">
+    <h2>🍔 Lanches</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800" alt="Hambúrguer">
+            <h3>Hambúrguer Clássico</h3>
+            <p>Pão, carne, queijo, alface e tomate.</p>
+            <div class="price">R$ 18,00</div>
         </div>
-    </section>
-
-    <section class="categoria">
-        <h2>🥤 Bebidas</h2>
-        <div class="produtos">
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Refrigerante">
-                <h3>Refrigerante Lata</h3>
-                <p>R$ 6,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Suco Natural">
-                <h3>Suco Natural</h3>
-                <p>R$ 8,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Água">
-                <h3>Água Mineral</h3>
-                <p>R$ 4,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Cerveja">
-                <h3>Cerveja</h3>
-                <p>R$ 9,00</p>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1606756790138-8ec2fdd8a1a7?w=800" alt="X-Bacon">
+            <h3>X-Bacon</h3>
+            <p>Pão, carne, queijo, bacon e maionese.</p>
+            <div class="price">R$ 22,00</div>
         </div>
-    </section>
-
-    <section class="categoria">
-        <h2>🍸 Bebidas Alcoólicas (18+)</h2>
-        <div class="produtos">
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Caipirinha">
-                <h3>Caipirinha</h3>
-                <p>R$ 15,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Gin Tônica">
-                <h3>Gin Tônica</h3>
-                <p>R$ 18,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Vinho">
-                <h3>Taça de Vinho</h3>
-                <p>R$ 20,00</p>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/150" alt="Whisky">
-                <h3>Whisky Dose</h3>
-                <p>R$ 25,00</p>
-            </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800" alt="Cheddar Burger">
+            <h3>Cheddar Burger</h3>
+            <p>Pão, carne, queijo cheddar e cebola caramelizada.</p>
+            <div class="price">R$ 24,00</div>
         </div>
-    </section>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=800" alt="Veggie Burger">
+            <h3>Veggie Burger</h3>
+            <p>Pão integral, hambúrguer de grão-de-bico e salada.</p>
+            <div class="price">R$ 20,00</div>
+        </div>
+    </div>
 
-</main>
+    <h2>🥤 Bebidas</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800" alt="Refrigerante">
+            <h3>Refrigerante Lata</h3>
+            <p>Coca-Cola, Guaraná ou Fanta.</p>
+            <div class="price">R$ 6,00</div>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571079027981-3a56f46b4b26?w=800" alt="Suco Natural">
+            <h3>Suco Natural</h3>
+            <p>Laranja, limão ou abacaxi.</p>
+            <div class="price">R$ 8,00</div>
+        </div>
+    </div>
 
-<footer>
-    <p>© 2025 Cardápio Digital - Todos os direitos reservados</p>
-</footer>
+    <h2>🍺 Bebidas Alcoólicas (18+)</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1572919339867-5fe9d7db0dfd?w=800" alt="Cerveja">
+            <h3>Cerveja Artesanal</h3>
+            <p>Disponível apenas para maiores de idade.</p>
+            <div class="price">R$ 15,00</div>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1585155777010-4e0a3b4a76a3?w=800" alt="Vinho">
+            <h3>Vinho Tinto</h3>
+            <p>Taça ou garrafa.</p>
+            <div class="price">R$ 20,00</div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
