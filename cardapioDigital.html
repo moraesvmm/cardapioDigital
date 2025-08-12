@@ -1,175 +1,178 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Digital</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f8f8f8;
-            color: #333;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardápio Digital</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #d32f2f;
+        color: white;
+        text-align: center;
+        padding: 15px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .categoria {
+        margin-bottom: 40px;
+    }
+
+    .categoria h2 {
+        background-color: #ffccbc;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .produtos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .produto {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        padding: 10px;
+        text-align: center;
+    }
+
+    .produto img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .produto h3 {
+        margin: 10px 0 5px;
+    }
+
+    .produto p {
+        margin: 0;
+        font-weight: bold;
+        color: #d32f2f;
+    }
+
+    footer {
+        background-color: #d32f2f;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    /* Forçar duas colunas no celular */
+    @media (max-width: 600px) {
+        .produtos {
+            grid-template-columns: repeat(2, 1fr);
         }
-        header {
-            background-color: #c62828;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #b71c1c;
-        }
-        nav button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: #b71c1c;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        nav button:hover, nav button.active {
-            background-color: #ff5252;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-        .item {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        .item:hover {
-            transform: scale(1.03);
-        }
-        .item img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-        .item h3 {
-            margin: 10px;
-            font-size: 18px;
-        }
-        .item p {
-            margin: 0 10px 10px;
-            color: #555;
-        }
-        .price {
-            margin: 10px;
-            font-weight: bold;
-            color: #c62828;
-            font-size: 16px;
-        }
-        footer {
-            background-color: #c62828;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-        }
-        .alert {
-            background: #ffebee;
-            color: #b71c1c;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
 <header>
     <h1>🍽 Cardápio Digital</h1>
-    <p>Peça direto pelo seu celular!</p>
 </header>
 
-<nav>
-    <button class="active" onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('lanches')">Lanches</button>
-    <button onclick="filtrar('sobremesas')">Sobremesas</button>
-    <button onclick="filtrar('bebidas')">Bebidas</button>
-    <button onclick="filtrar('alcool')">Bebidas Alcoólicas 🍺</button>
-</nav>
+<main>
 
-<div class="alert" id="alerta18">
-    ⚠️ Bebidas alcoólicas são proibidas para menores de 18 anos.
-</div>
+    <section class="categoria">
+        <h2>🍔 Lanches</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="X-Burger">
+                <h3>X-Burger</h3>
+                <p>R$ 15,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="X-Salada">
+                <h3>X-Salada</h3>
+                <p>R$ 17,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="X-Bacon">
+                <h3>X-Bacon</h3>
+                <p>R$ 20,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="X-Tudo">
+                <h3>X-Tudo</h3>
+                <p>R$ 25,00</p>
+            </div>
+        </div>
+    </section>
 
-<div class="container" id="produtos">
-    <!-- Produtos serão carregados via JavaScript -->
-</div>
+    <section class="categoria">
+        <h2>🥤 Bebidas</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Refrigerante">
+                <h3>Refrigerante Lata</h3>
+                <p>R$ 6,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Suco Natural">
+                <h3>Suco Natural</h3>
+                <p>R$ 8,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Água">
+                <h3>Água Mineral</h3>
+                <p>R$ 4,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Cerveja">
+                <h3>Cerveja</h3>
+                <p>R$ 9,00</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="categoria">
+        <h2>🍸 Bebidas Alcoólicas (18+)</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Caipirinha">
+                <h3>Caipirinha</h3>
+                <p>R$ 15,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Gin Tônica">
+                <h3>Gin Tônica</h3>
+                <p>R$ 18,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Vinho">
+                <h3>Taça de Vinho</h3>
+                <p>R$ 20,00</p>
+            </div>
+            <div class="produto">
+                <img src="https://via.placeholder.com/150" alt="Whisky">
+                <h3>Whisky Dose</h3>
+                <p>R$ 25,00</p>
+            </div>
+        </div>
+    </section>
+
+</main>
 
 <footer>
-    &copy; 2025 Cardápio Digital | Desenvolvido para demonstração
+    <p>© 2025 Cardápio Digital - Todos os direitos reservados</p>
 </footer>
-
-<script>
-    const produtos = [
-        // Lanches
-        { nome: "X-Burger", descricao: "Pão, hambúrguer, queijo e maionese.", preco: "R$ 15,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-        { nome: "X-Salada", descricao: "Pão, hambúrguer, queijo, alface, tomate e maionese.", preco: "R$ 18,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1617196039897-7d58c2b85c73" },
-        { nome: "Hot Dog", descricao: "Pão, salsicha, milho, batata palha e molho.", preco: "R$ 12,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" },
-
-        // Sobremesas
-        { nome: "Açaí 300ml", descricao: "Açaí com granola, banana e leite condensado.", preco: "R$ 14,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1586985289906-406988974504" },
-        { nome: "Pudim", descricao: "Pudim de leite condensado caseiro.", preco: "R$ 8,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1617196039897-7d58c2b85c73" },
-        { nome: "Brownie", descricao: "Brownie de chocolate com cobertura.", preco: "R$ 10,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1601979031896-4cc5095d7b87" },
-
-        // Bebidas
-        { nome: "Refrigerante Lata", descricao: "350ml gelado.", preco: "R$ 6,00", categoria: "bebidas", img: "https://images.unsplash.com/photo-1617191514709-9e8a3ee51e76" },
-        { nome: "Suco Natural", descricao: "Suco 300ml de frutas da estação.", preco: "R$ 8,00", categoria: "bebidas", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc" },
-
-        // Alcoólicas
-        { nome: "Cerveja Long Neck", descricao: "355ml - Apenas para maiores de 18 anos.", preco: "R$ 9,00", categoria: "alcool", img: "https://images.unsplash.com/photo-1551524164-6e6a46b8f6c4" },
-        { nome: "Caipirinha", descricao: "Limão, cachaça, açúcar e gelo.", preco: "R$ 15,00", categoria: "alcool", img: "https://images.unsplash.com/photo-1564769662023-9c5182d0b4d4" }
-    ];
-
-    const container = document.getElementById("produtos");
-    const alerta18 = document.getElementById("alerta18");
-
-    function exibirProdutos(lista) {
-        container.innerHTML = "";
-        lista.forEach(p => {
-            container.innerHTML += `
-                <div class="item">
-                    <img src="${p.img}" alt="${p.nome}">
-                    <h3>${p.nome}</h3>
-                    <p>${p.descricao}</p>
-                    <div class="price">${p.preco}</div>
-                </div>
-            `;
-        });
-    }
-
-    function filtrar(categoria) {
-        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-        event.target.classList.add("active");
-
-        if (categoria === "todos") {
-            exibirProdutos(produtos);
-            alerta18.style.display = "none";
-        } else if (categoria === "alcool") {
-            exibirProdutos(produtos.filter(p => p.categoria === "alcool"));
-            alerta18.style.display = "block";
-        } else {
-            exibirProdutos(produtos.filter(p => p.categoria === categoria));
-            alerta18.style.display = "none";
-        }
-    }
-
-    // Exibe todos ao iniciar
-    exibirProdutos(produtos);
-</script>
 
 </body>
 </html>
