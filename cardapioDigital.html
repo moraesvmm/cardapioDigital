@@ -1,497 +1,175 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cardápio Digital — Protótipo</title>
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --accent-1: #f6b93b; /* amarelo-laranja suave */
-      --accent-2: #f39c12; /* laranja mais quente */
-      --muted: #6c757d;
-      --card-radius: 14px;
-    }
-
-    html,body{height:100%}
-    body{
-      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#fbfbfc 0%, #f0f2f5 100%);
-      margin:0;
-      padding-bottom:80px;
-      color:#222;
-    }
-
-    /* cabeçalho compacto e chamativo */
-    .site-header{
-      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
-      color: #fff;
-      height:56px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:0 18px;
-      box-shadow: 0 6px 18px rgba(243,156,18,0.12);
-    }
-    .brand-title{
-      font-family: "Playfair Display", serif;
-      font-size:1.15rem;
-      letter-spacing:0.6px;
-      margin:0;
-    }
-    .brand-sub{
-      font-size:0.75rem;
-      opacity:0.95;
-      margin:0;
-    }
-
-    .container-main{
-      max-width:1200px;
-      margin:22px auto;
-      padding:0 16px;
-    }
-
-    /* controls topo */
-    .controls{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-    .search-input{
-      flex:1 1 320px;
-      max-width:620px;
-    }
-    .filter-wrap{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    /* cards */
-    .card-menu{
-      border-radius:var(--card-radius);
-      overflow:hidden;
-      transition: transform .28s ease, box-shadow .28s ease;
-      box-shadow: 0 3px 12px rgba(18,18,18,0.06);
-      background:#fff;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-    }
-    .card-menu:hover{
-      transform:translateY(-8px);
-      box-shadow:0 14px 30px rgba(18,18,18,0.12);
-    }
-    .card-img{
-      height:170px;
-      object-fit:cover;
-      width:100%;
-      display:block;
-    }
-    .card-body-custom{
-      padding:12px 14px;
-      flex:1 1 auto;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .price{
-      color:#2d9958;
-      font-weight:700;
-      font-size:1.02rem;
-    }
-    .badges { gap:6px; display:flex; flex-wrap:wrap; }
-
-    /* promo ribbon */
-    .ribbon {
-      position:absolute; top:10px; left:10px;
-      background:linear-gradient(90deg,#ff6b6b,#ff8e72);
-      color:white; padding:6px 10px; border-radius:8px; font-weight:700;
-      font-size:0.78rem;
-      box-shadow:0 6px 18px rgba(255,86,86,0.12);
-    }
-
-    /* modal image */
-    #modalImagem { width:100%; max-height:360px; object-fit:cover; border-radius:8px; }
-
-    /* footer fixed */
-    footer{
-      position:fixed;
-      bottom:0; left:0; right:0;
-      background:rgba(44,62,80,0.96);
-      color:#fff;
-      padding:10px 14px;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      align-items:center;
-      font-size:0.95rem;
-      z-index:60;
-    }
-
-    /* whatsapp float */
-    .btn-wa{
-      position:fixed;
-      right:18px;
-      bottom:84px;
-      z-index:80;
-      border-radius:50%;
-      width:58px; height:58px;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 30px rgba(0,0,0,0.18);
-      background:linear-gradient(180deg,#25D366,#128C7E);
-      color:#fff;
-      font-size:22px;
-      text-decoration:none;
-    }
-
-    /* small screens */
-    @media (max-width:576px){
-      .card-img{ height:140px; }
-      .controls{ gap:8px; }
-      footer{ font-size:0.85rem; padding:8px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background-color: #c62828;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #b71c1c;
+        }
+        nav button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: #b71c1c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        nav button:hover, nav button.active {
+            background-color: #ff5252;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .item:hover {
+            transform: scale(1.03);
+        }
+        .item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .item h3 {
+            margin: 10px;
+            font-size: 18px;
+        }
+        .item p {
+            margin: 0 10px 10px;
+            color: #555;
+        }
+        .price {
+            margin: 10px;
+            font-weight: bold;
+            color: #c62828;
+            font-size: 16px;
+        }
+        footer {
+            background-color: #c62828;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .alert {
+            background: #ffebee;
+            color: #b71c1c;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,0.13);display:flex;align-items:center;justify-content:center;font-weight:700;">
-        🍽
-      </div>
-      <div>
-        <p class="brand-title">Restaurante Prototipo</p>
-        <p class="brand-sub">Sabores que conquistam — cardápio digital</p>
-      </div>
-    </div>
-    <div style="margin-left:auto;color:rgba(255,255,255,0.95);font-weight:600">Protótipo para prospecção</div>
-  </header>
+<header>
+    <h1>🍽 Cardápio Digital</h1>
+    <p>Peça direto pelo seu celular!</p>
+</header>
 
-  <main class="container-main">
+<nav>
+    <button class="active" onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('lanches')">Lanches</button>
+    <button onclick="filtrar('sobremesas')">Sobremesas</button>
+    <button onclick="filtrar('bebidas')">Bebidas</button>
+    <button onclick="filtrar('alcool')">Bebidas Alcoólicas 🍺</button>
+</nav>
 
-    <div class="controls">
-      <div class="search-input input-group">
-        <span class="input-group-text"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <input id="search" class="form-control" placeholder="Buscar prato, ingrediente ou tag (ex: veg, promo)" />
-        <button id="qrBtn" class="btn btn-outline-secondary" title="Gerar QR do cardápio">QR</button>
-      </div>
+<div class="alert" id="alerta18">
+    ⚠️ Bebidas alcoólicas são proibidas para menores de 18 anos.
+</div>
 
-      <div style="display:flex;gap:8px;align-items:center">
-        <select id="sort" class="form-select" style="width:150px">
-          <option value="popular">Ordenar: padrão</option>
-          <option value="price-asc">Preço ↑</option>
-          <option value="price-desc">Preço ↓</option>
-          <option value="novo">Novos</option>
-        </select>
-        <div class="filter-wrap" id="categories"></div>
-      </div>
-    </div>
+<div class="container" id="produtos">
+    <!-- Produtos serão carregados via JavaScript -->
+</div>
 
-    <div id="promoBanner" class="mb-3" style="display:flex;gap:10px;align-items:center;">
-      <div style="flex:1;border-radius:12px;padding:12px 16px;background:linear-gradient(90deg, rgba(243,156,18,0.12), rgba(246,185,59,0.06));display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <strong>Combo do dia:</strong> Lasanha vegetariana + Taça de sorvete por <strong>R$ 45,00</strong>
-        </div>
-        <div style="font-size:0.9rem;color:var(--muted)">Válido hoje ✦ Destaque para prospecção</div>
-      </div>
-    </div>
+<footer>
+    &copy; 2025 Cardápio Digital | Desenvolvido para demonstração
+</footer>
 
-    <section id="menu" class="row g-4">
-      <!-- cards injetados por JS -->
-    </section>
-
-  </main>
-
-  <!-- Modal detalhes -->
-  <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header" style="background:#2c3e50;color:#fff">
-          <h5 class="modal-title" id="modalDetalhesLabel">Detalhes</h5>
-          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body p-3">
-          <img id="modalImagem" src="" alt="" class="mb-3" />
-          <h4 id="modalNome"></h4>
-          <p id="modalDescricao" style="color:#444"></p>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
-            <div class="price" id="modalPreco"></div>
-            <div id="modalTags" class="badges"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal aviso idade -->
-  <div class="modal fade" id="modalIdade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header" style="background:var(--accent-2);color:#fff">
-          <h5 class="modal-title">Aviso — Bebidas alcoólicas</h5>
-        </div>
-        <div class="modal-body">
-          <p>Este cardápio contém bebidas alcoólicas. É permitido apenas para maiores de 18 anos.</p>
-          <div class="d-flex gap-2 justify-content-end">
-            <button id="idadeNao" class="btn btn-outline-secondary btn-sm">Não</button>
-            <button id="idadeSim" class="btn btn-success btn-sm">Tenho 18+</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal QR -->
-  <div class="modal fade" id="modalQR" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header" style="background:#34495e;color:#fff">
-          <h5 class="modal-title">QRCode do Cardápio</h5>
-          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body text-center p-3">
-          <img id="qrImage" src="" alt="QR" style="width:180px;height:180px"/>
-          <p class="mt-2 small text-muted">Escaneie para abrir este cardápio no celular</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer fixo -->
-  <footer>
-    <div>📍 Rua Exemplo, 123 — Atendimento: 12:00–23:00</div>
-    <div style="opacity:0.85"> • </div>
-    <div style="opacity:0.9">Protótipo • Atualize via GitHub</div>
-  </footer>
-
-  <!-- WhatsApp floating — editar o número abaixo -->
-  <a id="whatsappBtn" class="btn-wa" href="https://wa.me/5511999999999" target="_blank" title="Contato WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20 4.5A10 10 0 104.5 20L3 21l1.1-2.9A10 10 0 0020 4.5zM12 6.5a5.5 5.5 0 015.5 5.5c0 1.1-.3 2.1-.9 3l.6 1.6-1.7-.5a5.5 5.5 0 01-3 0 5.5 5.5 0 01-3.1-2.7 5.5 5.5 0 01.1-4.7A5.5 5.5 0 0112 6.5z"/></svg>
-  </a>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    /***************
-     * DADOS (edite aqui)
-     * Cada objeto pode ter: id, categoria, nome, descricao, preco, imagem, tags (array), destaque (promo/novo)
-     ****************/
+<script>
     const produtos = [
-      {id:1,categoria:"Entradas",nome:"Bruschetta Tradicional",descricao:"Pão crocante, tomate, manjericão e azeite extravirgem.",preco:20.00,imagem:"https://images.unsplash.com/photo-1572441711309-6c0866a3b898?auto=format&fit=crop&w=800&q=80",tags:["veg"]},
-      {id:2,categoria:"Entradas",nome:"Bolinho de Bacalhau",descricao:"Croquete crocante servido com maionese temperada.",preco:28.00,imagem:"https://images.unsplash.com/photo-1604908177522-1f8f7b6a5c6c?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:3,categoria:"Pratos Principais",nome:"Lasanha Vegetariana",descricao:"Camadas de massa fresca, molho de tomate e queijo gratinado.",preco:45.00,imagem:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",tags:["veg","promo"],destaque:"promo"},
-      {id:4,categoria:"Pratos Principais",nome:"Filé Mignon ao Molho Madeira",descricao:"Carne suculenta com molho madeira tradicional.",preco:60.00,imagem:"https://images.unsplash.com/photo-1562967916-eb82221dfb43?auto=format&fit=crop&w=800&q=80",tags:[]},
-      {id:5,categoria:"Sobremesas",nome:"Taça de Sorvete",descricao:"Sorvete de creme com calda de frutas vermelhas.",preco:18.00,imagem:"https://images.unsplash.com/photo-1505253210343-87449a229aee?auto=format&fit=crop&w=800&q=80",tags:["promo"],destaque:"promo"},
-      {id:6,categoria:"Bebidas Alcoólicas",nome:"Vinho Tinto Reserva",descricao:"Vinho tinto seco, perfeito para acompanhar carnes.",preco:120.00,imagem:"images/vinho.avif",tags:["alc"]},
-      // adicione mais produtos conforme precisar
+        // Lanches
+        { nome: "X-Burger", descricao: "Pão, hambúrguer, queijo e maionese.", preco: "R$ 15,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+        { nome: "X-Salada", descricao: "Pão, hambúrguer, queijo, alface, tomate e maionese.", preco: "R$ 18,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1617196039897-7d58c2b85c73" },
+        { nome: "Hot Dog", descricao: "Pão, salsicha, milho, batata palha e molho.", preco: "R$ 12,00", categoria: "lanches", img: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" },
+
+        // Sobremesas
+        { nome: "Açaí 300ml", descricao: "Açaí com granola, banana e leite condensado.", preco: "R$ 14,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1586985289906-406988974504" },
+        { nome: "Pudim", descricao: "Pudim de leite condensado caseiro.", preco: "R$ 8,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1617196039897-7d58c2b85c73" },
+        { nome: "Brownie", descricao: "Brownie de chocolate com cobertura.", preco: "R$ 10,00", categoria: "sobremesas", img: "https://images.unsplash.com/photo-1601979031896-4cc5095d7b87" },
+
+        // Bebidas
+        { nome: "Refrigerante Lata", descricao: "350ml gelado.", preco: "R$ 6,00", categoria: "bebidas", img: "https://images.unsplash.com/photo-1617191514709-9e8a3ee51e76" },
+        { nome: "Suco Natural", descricao: "Suco 300ml de frutas da estação.", preco: "R$ 8,00", categoria: "bebidas", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc" },
+
+        // Alcoólicas
+        { nome: "Cerveja Long Neck", descricao: "355ml - Apenas para maiores de 18 anos.", preco: "R$ 9,00", categoria: "alcool", img: "https://images.unsplash.com/photo-1551524164-6e6a46b8f6c4" },
+        { nome: "Caipirinha", descricao: "Limão, cachaça, açúcar e gelo.", preco: "R$ 15,00", categoria: "alcool", img: "https://images.unsplash.com/photo-1564769662023-9c5182d0b4d4" }
     ];
 
-    // Estado para controle de maioridade
-    let idadeConfirmada = false;
+    const container = document.getElementById("produtos");
+    const alerta18 = document.getElementById("alerta18");
 
-    // Monta filtros categoria dinamicamente
-    const categories = [...new Set(produtos.map(p => p.categoria))];
-    const categoriesWrap = document.getElementById("categories");
-    categories.forEach(cat=>{
-      const btn = document.createElement("button");
-      btn.className = "btn btn-outline-secondary btn-sm";
-      btn.textContent = cat;
-      btn.dataset.cat = cat;
-      btn.addEventListener("click",()=>{
-        if(btn.classList.contains("active")){
-          btn.classList.remove("active");
-          renderProdutos();
+    function exibirProdutos(lista) {
+        container.innerHTML = "";
+        lista.forEach(p => {
+            container.innerHTML += `
+                <div class="item">
+                    <img src="${p.img}" alt="${p.nome}">
+                    <h3>${p.nome}</h3>
+                    <p>${p.descricao}</p>
+                    <div class="price">${p.preco}</div>
+                </div>
+            `;
+        });
+    }
+
+    function filtrar(categoria) {
+        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+        event.target.classList.add("active");
+
+        if (categoria === "todos") {
+            exibirProdutos(produtos);
+            alerta18.style.display = "none";
+        } else if (categoria === "alcool") {
+            exibirProdutos(produtos.filter(p => p.categoria === "alcool"));
+            alerta18.style.display = "block";
         } else {
-          // desativar outros
-          Array.from(categoriesWrap.children).forEach(b=>b.classList.remove("active"));
-          btn.classList.add("active");
-          renderProdutos(cat);
+            exibirProdutos(produtos.filter(p => p.categoria === categoria));
+            alerta18.style.display = "none";
         }
-      });
-      categoriesWrap.appendChild(btn);
-    });
-
-    // Renderiza os produtos na tela, opcionalmente filtrando por categoria ou busca
-    function renderProdutos(categoriaFiltro, busca = ""){
-      const menu = document.getElementById("menu");
-      menu.innerHTML = "";
-      let list = produtos;
-
-      if(categoriaFiltro){
-        list = list.filter(p=>p.categoria === categoriaFiltro);
-      }
-      if(busca){
-        const txt = busca.toLowerCase();
-        list = list.filter(p=>
-          p.nome.toLowerCase().includes(txt) ||
-          p.descricao.toLowerCase().includes(txt) ||
-          (p.tags && p.tags.some(t=>t.includes(txt)))
-        );
-      }
-
-      // Se tem bebida alcoólica e usuário não confirmou idade, não mostra essas bebidas
-      if(!idadeConfirmada){
-        list = list.filter(p=>!p.tags || !p.tags.includes("alc"));
-      }
-
-      if(list.length === 0){
-        menu.innerHTML = "<p class='text-muted'>Nenhum produto encontrado.</p>";
-        return;
-      }
-
-      list.forEach(p=>{
-        const col = document.createElement("div");
-        col.className = "col-6 col-sm-6 col-md-4 col-lg-3"; // 2 colunas no celular!
-
-        const card = document.createElement("div");
-        card.className = "card-menu";
-
-        const cardWrap = document.createElement("div");
-        cardWrap.style.position = "relative";
-
-        // Imagem - tratar se não carregar
-        const img = document.createElement("img");
-        img.className = "card-img";
-        img.src = p.imagem;
-        img.alt = p.nome;
-        img.onerror = function(){
-          this.src = "https://via.placeholder.com/400x300?text=Imagem+indispon%C3%ADvel";
-        };
-
-        cardWrap.appendChild(img);
-
-        // Rótulo destaque
-        if(p.destaque){
-          const ribbon = document.createElement("div");
-          ribbon.className = "ribbon";
-          ribbon.textContent = p.destaque === "promo" ? "Promoção" : p.destaque === "novo" ? "Novo" : "";
-          cardWrap.appendChild(ribbon);
-        }
-
-        card.appendChild(cardWrap);
-
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body-custom";
-
-        const title = document.createElement("h5");
-        title.textContent = p.nome;
-        cardBody.appendChild(title);
-
-        const desc = document.createElement("p");
-        desc.style.flexGrow = "1";
-        desc.style.color = "#555";
-        desc.style.fontSize = "0.9rem";
-        desc.textContent = p.descricao;
-        cardBody.appendChild(desc);
-
-        const price = document.createElement("div");
-        price.className = "price";
-        price.textContent = "R$ " + p.preco.toFixed(2).replace(".",",");
-        cardBody.appendChild(price);
-
-        // Tags (ex: veg, alc)
-        if(p.tags && p.tags.length > 0){
-          const badges = document.createElement("div");
-          badges.className = "badges";
-          p.tags.forEach(t=>{
-            const b = document.createElement("span");
-            b.className = "badge bg-secondary";
-            b.textContent = t.toUpperCase();
-            badges.appendChild(b);
-          });
-          cardBody.appendChild(badges);
-        }
-
-        card.appendChild(cardBody);
-
-        // Clique abre modal com detalhes
-        card.addEventListener("click", ()=>{
-          showModalDetalhes(p);
-        });
-
-        col.appendChild(card);
-        menu.appendChild(col);
-      });
     }
 
-    // Modal detalhes
-    function showModalDetalhes(p){
-      const modal = new bootstrap.Modal(document.getElementById("modalDetalhes"));
-      document.getElementById("modalImagem").src = p.imagem;
-      document.getElementById("modalImagem").alt = p.nome;
-      document.getElementById("modalNome").textContent = p.nome;
-      document.getElementById("modalDescricao").textContent = p.descricao;
-      document.getElementById("modalPreco").textContent = "R$ " + p.preco.toFixed(2).replace(".",",");
-      const tagsContainer = document.getElementById("modalTags");
-      tagsContainer.innerHTML = "";
-      if(p.tags && p.tags.length){
-        p.tags.forEach(t=>{
-          const b = document.createElement("span");
-          b.className = "badge bg-secondary me-1";
-          b.textContent = t.toUpperCase();
-          tagsContainer.appendChild(b);
-        });
-      }
-      modal.show();
-    }
+    // Exibe todos ao iniciar
+    exibirProdutos(produtos);
+</script>
 
-    // Confirmar idade para bebidas alcoólicas
-    function mostrarModalIdade(){
-      const modal = new bootstrap.Modal(document.getElementById("modalIdade"));
-      modal.show();
-
-      document.getElementById("idadeSim").onclick = () => {
-        idadeConfirmada = true;
-        modal.hide();
-        renderProdutos();
-      };
-      document.getElementById("idadeNao").onclick = () => {
-        idadeConfirmada = false;
-        modal.hide();
-        renderProdutos();
-      };
-    }
-
-    // Filtros e busca
-    document.getElementById("search").addEventListener("input", (e)=>{
-      const filtro = e.target.value.trim();
-      // pegar categoria ativa, se houver
-      const catBtn = document.querySelector("#categories .btn.active");
-      const categoria = catBtn ? catBtn.dataset.cat : null;
-      renderProdutos(categoria, filtro);
-    });
-
-    // Botão QR (exemplo simples)
-    document.getElementById("qrBtn").addEventListener("click", ()=>{
-      const modal = new bootstrap.Modal(document.getElementById("modalQR"));
-      // Pode gerar QR dinamicamente — aqui só usa imagem fixa como exemplo
-      const url = window.location.href;
-      const qrImg = document.getElementById("qrImage");
-      qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(url);
-      modal.show();
-    });
-
-    // Na inicialização
-    window.onload = function(){
-      // Se tiver bebida alcoólica, pedir confirmação
-      if(produtos.some(p=>p.tags && p.tags.includes("alc"))){
-        mostrarModalIdade();
-      } else {
-        renderProdutos();
-      }
-    }
-  </script>
 </body>
 </html>
